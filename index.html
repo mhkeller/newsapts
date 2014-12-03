@@ -41,6 +41,9 @@
 
 	</pre>
 
+	<button>ohMy</button>
+	<textarea id="printer"></textarea>
+
 	<script type="text/javascript">
 
 		// var canvas = document.getElementById('canvas')
@@ -87,8 +90,20 @@
 			setTimeout(createThus, Math.random() * 1000)
 		}
 
+		// render()
+
+		function bake(){
+			tick()
+			preCanvas.text(ohLord.join(''))
+			createThus()
+		}
+
+		bake()
 		render()
 
+		d3.select('button').on('click', function(){
+			d3.select('#printer').text(JSON.stringify(ohLord))
+		})
 
 
 	</script>
