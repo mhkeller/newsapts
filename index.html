@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge;chrome=1">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="width=device-width">
+	<title></title>
+	<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+
+	<style>
+		#canvas{
+			font-family: times;
+		}
+/*		#canvas{
+			-webkit-transform: rotate(90deg);
+			-moz-transform: rotate(90deg);
+			transform: rotate(90deg);
+		}
+*//*		#canvas{
+			-webkit-transform: rotate(67deg) translate(-52px, 14px);
+			-moz-transform: rotate(67deg) translate(-52px, 14px);
+			transform: rotate(67deg) translate(-52px, 14px);
+		}
+*/	
+/*		#canvas{
+			-webkit-transform: rotate(77deg);
+			-moz-transform: rotate(77deg);
+			transform: rotate(77deg);
+		}
+*/	
+</style>
+
+</head>
+<body>
+
+	<h1>#newsapts</h1>
+
+
+	<pre id="canvas">
+		,a,,,c,s,v,,,,,,soundsystem,,,,production,,,,,
+
+	</pre>
+
+	<script type="text/javascript">
+
+		// var canvas = document.getElementById('canvas')
+		var preCanvas = d3.select('#canvas')
+
+		var width = 60
+		var height = 30
+		var ohLord = new Array(width*height)
+
+
+
+		for (var i = 0; i < width * height; i++) {
+			if (i % width == 0) {
+				ohLord[i*width] = '\n'
+			} else {
+				ohLord[i*width] = ' '
+			}
+		};
+
+
+		function createThus() {
+			var w = Math.floor(Math.random()*width)
+			var h = Math.floor(Math.random()*height)
+			ohLord[w * h] = ','
+		}
+
+		function tick() {
+			for (var i = ohLord.length - 1; i >= 0; i--) {
+				if (ohLord[i] === ',') {
+					ohLord[i] = ''
+					if (ohLord[i+width] === '\n') {
+						ohLord[i+width+1] = ','
+					} else {
+						ohLord[i+width] = ','
+					}
+				}
+			};
+		}
+
+		function render() {
+			tick()
+			preCanvas.text(ohLord.join(''))
+			setTimeout(render, 200)
+			setTimeout(createThus, Math.random() * 1000)
+		}
+
+		render()
+
+
+
+	</script>
+
+
+</body>
+</html>
